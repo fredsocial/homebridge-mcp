@@ -1,0 +1,13 @@
+# Local workspace instructions; keep these out of the public repository.
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.agents/
+.codex/
+
+# Local development artifacts.
+node_modules/
+coverage/
+dist/
+*.log
+*.tgz

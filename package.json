@@ -1,0 +1,34 @@
+{
+  "name": "homebridge-mcp",
+  "version": "0.10.3",
+  "description": "Expose Homebridge devices through an authenticated MCP endpoint.",
+  "author": {
+    "name": "Freddy Reyes",
+    "url": "https://freddyreyes.com"
+  },
+  "main": "src/index.js",
+  "files": [
+    "src/",
+    "config.schema.json",
+    "README.md"
+  ],
+  "keywords": [
+    "homebridge-plugin",
+    "mcp",
+    "homekit"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "homebridge": ">=1.6.0"
+  },
+  "scripts": {
+    "test": "node --test",
+    "lint": "node --check src/*.js",
+    "build": "node --check src/*.js"
+  },
+  "homebridge": {
+    "pluginAlias": "HomebridgeMCP",
+    "pluginType": "platform"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "pluginAlias": "HomebridgeMCP",
+  "pluginType": "platform",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": { "type": "string", "default": "Homebridge MCP" },
+      "enabled": { "type": "boolean", "default": true },
+      "bind": { "type": "string", "default": "127.0.0.1" },
+      "port": { "type": "integer", "minimum": 1, "maximum": 65535, "default": 8765 },
+      "path": { "type": "string", "default": "/mcp" },
+      "token": { "type": "string", "minLength": 16, "required": true },
+      "cameraPin": { "type": "string", "format": "password", "default": "", "description": "Optional setup PIN for Homebridge external camera bridges. Required for camera snapshots; never logged." },
+      "cloudflareAccess": {
+        "type": "object",
+        "properties": {
+          "enabled": { "type": "boolean", "default": false, "description": "Use Cloudflare Access Managed OAuth at the reverse proxy." },
+          "teamDomain": { "type": "string", "default": "", "description": "Cloudflare Access team origin, for example https://your-team.cloudflareaccess.com" },
+          "audience": { "type": "string", "default": "", "description": "Application Audience (AUD) tag from the Cloudflare Access application." }
+        }
+      },
+      "readOnly": { "type": "boolean", "default": false },
+      "writableDeviceIds": { "type": "string", "default": "", "description": "One stable device ID per line. All unlisted devices stay read-only." },
+      "permissions": {
+        "type": "object",
+        "properties": {
+          "sensors": { "type": "boolean", "default": true },
+          "lights": { "type": "boolean", "default": true },
+          "switches": { "type": "boolean", "default": true },
+          "fans": { "type": "boolean", "default": true },
+          "thermostats": { "type": "boolean", "default": true },
+          "scenes": { "type": "boolean", "default": true },
+          "locks": { "type": "boolean", "default": false },
+          "garageDoors": { "type": "boolean", "default": false },
+          "securitySystems": { "type": "boolean", "default": false }
+        }
+      },
+      "auditLogging": { "type": "boolean", "default": true }
+    },
+    "required": ["name", "token"]
+  },
+  "layout": [
+    { "type": "fieldset", "legend": "MCP server", "items": ["enabled", "bind", "port", "path", "token", "readOnly"] },
+    { "type": "fieldset", "legend": "Camera snapshots", "items": ["cameraPin"] },
+    { "type": "fieldset", "legend": "Cloudflare Access Managed OAuth", "items": ["cloudflareAccess.enabled", "cloudflareAccess.teamDomain", "cloudflareAccess.audience"] },
+    { "type": "fieldset", "legend": "Permissions", "items": ["writableDeviceIds", "permissions.sensors", "permissions.lights", "permissions.switches", "permissions.fans", "permissions.thermostats", "permissions.scenes", "permissions.locks", "permissions.garageDoors", "permissions.securitySystems"] },
+    "auditLogging"
+  ]
+}
